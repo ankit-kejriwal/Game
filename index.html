@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<canvas id="myCanvas" width="680" height="420"></canvas>
+<canvas id="myCanvas" width="700" height="420"></canvas>
 
 <script>
 var canvas = document.getElementById("myCanvas");
@@ -25,6 +25,54 @@ var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
+var brickRow  = 6;
+var brickColumn = 7;
+var brickWidth = 75;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickLeftOffset = 40;
+var brickTopOffset = 40;
+var bricks = [];    
+
+for(var c=0; c<brickColumn; c++) {
+    bricks[c] = [];
+    for(r=0; r<brickRow; r++) {
+        bricks[c][r] = { x: 0, y: 0,status:1 };
+    }
+}    
+    
+function drawBrick(){
+    for(var i =0 ;  i<brickColumn;i++){
+        for(var j= 0;j<brickRow;j++){
+            if(bricks[i][j].status == 1){
+                var brickX = (i*(brickWidth+brickPadding))+brickLeftOffset;
+                var brickY = (j*(brickHeight+brickPadding))+brickTopOffset;
+                bricks[i][j].x = brickX;
+                bricks[i][j].y = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX,brickY,brickWidth,brickHeight);
+                ctx.fillStyle= "blue";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+}   
+    
+function collisonDetection(){
+    for(var i =0 ;i<brickColumn;i++){
+        for(var j=0;j<brickRow;j++){
+            var b = bricks[i][j];
+            if(b.status ==1){
+            if(x > b.x && x< b.x+brickWidth && y >b.y && y< b.y+brickHeight ){
+                dy = -dy;
+                b.status =0;
+            }
+        }
+        }
+    }
+
+}    
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -65,7 +113,8 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
-    
+    drawBrick();
+    collisonDetection();
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
