@@ -5,9 +5,10 @@
     <meta charset="utf-8" />
     <title>Gamedev Canvas Workshop</title>
     <style>
-        * {
+        body {
             padding: 0;
             margin: 0;
+            background: #eee;
         }
         .wrapperClass {
             position: relative;
@@ -18,8 +19,9 @@
             top: 50%;
             font-weight: bold;
             font-size: 25px;
-            color: #499014;
+            color: #8BC34A;
             width: 100%;
+            font-family: monospace;
         }
 
         .hide {
@@ -38,7 +40,7 @@
 <body>
     <div class="wrapperClass">
         <p id="startTitle">Press spacebar to start the game</p>
-        <canvas id="myCanvas" width="700" height="420"></canvas>
+        <canvas id="myCanvas" width="800" height="520"></canvas>
     </div>
 
     <script>
@@ -54,9 +56,9 @@
         var paddleX = (canvas.width - paddleWidth) / 2;
         var rightPressed = false;
         var leftPressed = false;
-        var brickRow = 6;
-        var brickColumn = 7;
-        var brickWidth = 75;
+        var brickRow = 7;
+        var brickColumn = 8;
+        var brickWidth = 80;
         var brickHeight = 20;
         var brickPadding = 10;
         var brickLeftOffset = 40;
