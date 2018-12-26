@@ -5,7 +5,8 @@
     <title>Gamedev Canvas Workshop</title>
     <style>
     	* { padding: 0; margin: 0; }
-    	canvas { background: #eee; display: block; margin: 0 auto; }
+    	canvas { background: #2A2927; display: block; margin: 0 auto;
+                 background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/F5Nimut/twinkling-stars-in-the-night-sky-loop_rpkmj9ea_thumbnail-full01.png") }
     </style>
 </head>
 <body>
@@ -45,12 +46,12 @@ for(var c=0; c<brickColumn; c++) {
     
 function drawScore(){
     ctx.font ="16px Arial";
-    ctx.fillStyle = "teal";
+    ctx.fillStyle = "#aeaeae";
     ctx.fillText("Score: " +score,8,20);
 } 
 function drawLives(){
     ctx.font ="16px Arial";
-    ctx.fillStyle = "teal";
+    ctx.fillStyle = "#aeaeae";
     ctx.fillText("Lives: " +lives,canvas.width-70,20);
 }      
 function drawBrick(){
@@ -63,7 +64,10 @@ function drawBrick(){
                 bricks[i][j].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX,brickY,brickWidth,brickHeight);
-                ctx.fillStyle= "blue";
+                if(i%2!=0)
+                    ctx.fillStyle="#7f7f7f";
+                else
+                    ctx.fillStyle="#fff";
                 ctx.fill();
                 ctx.closePath();
             }
@@ -93,6 +97,7 @@ function collisonDetection(){
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function keyDownHandler(e) {
     if(e.keyCode == 39) {
@@ -110,18 +115,31 @@ function keyUpHandler(e) {
         leftPressed = false;
     }
 }
+function mouseMoveHandler(e){
+ 
+ var relativeX=e.clientX-canvas.offsetLeft;
+
+ if(relativeX>0 && relativeX<canvas.width){
+
+    if((relativeX-paddleWidth/2>=0) && (relativeX-paddleWidth/2<=(canvas.width-paddleWidth)))
+       paddleX=relativeX-paddleWidth/2;
+
+ }
+
+
+}
 
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#7f7f7f";
     ctx.fill();
     ctx.closePath();
 }
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = "#7f7f7f";
     ctx.fill();
     ctx.closePath();
 }
