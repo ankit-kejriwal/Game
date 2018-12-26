@@ -9,14 +9,17 @@
             padding: 0;
             margin: 0;
         }
-
+        .wrapperClass {
+            position: relative;
+        }
         p {
             position: absolute;
-            left: 35%;
-            top: 24%;
+            text-align: center;
+            top: 50%;
             font-weight: bold;
             font-size: 25px;
             color: #499014;
+            width: 100%;
         }
 
         .hide {
@@ -33,8 +36,10 @@
 </head>
 
 <body>
-    <p id="startTitle">Press spacebar to start the game</p>
-    <canvas id="myCanvas" width="700" height="420"></canvas>
+    <div class="wrapperClass">
+        <p id="startTitle">Press spacebar to start the game</p>
+        <canvas id="myCanvas" width="700" height="420"></canvas>
+    </div>
 
     <script>
         var canvas = document.getElementById("myCanvas");
