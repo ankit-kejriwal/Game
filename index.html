@@ -52,7 +52,7 @@
         var dx = 2;
         var dy = -2;
         var paddleHeight = 10;
-        var paddleWidth = 75;
+        var paddleWidth = 85;
         var paddleX = (canvas.width - paddleWidth) / 2;
         var rightPressed = false;
         var leftPressed = false;
@@ -76,14 +76,14 @@
         }
 
         function drawScore() {
-            ctx.font = "16px Arial";
-            ctx.fillStyle = "#aeaeae";
+            ctx.font = "17px monospace";
+            ctx.fillStyle = "#22a894";
             ctx.fillText("Score: " + score, 8, 20);
         }
         function drawLives() {
-            ctx.font = "16px Arial";
-            ctx.fillStyle = "#aeaeae";
-            ctx.fillText("Lives: " + lives, canvas.width - 70, 20);
+            ctx.font = "17px monospace";
+            ctx.fillStyle = "#22a894";
+            ctx.fillText("Lives: " + lives, canvas.width - 90, 20);
         }
         function drawBrick() {
             for (var i = 0; i < brickColumn; i++) {
@@ -96,9 +96,9 @@
                         ctx.beginPath();
                         ctx.rect(brickX, brickY, brickWidth, brickHeight);
                         if (i % 2 != 0)
-                            ctx.fillStyle = "#7f7f7f";
+                            ctx.fillStyle = "#ec125f";
                         else
-                            ctx.fillStyle = "#fff";
+                            ctx.fillStyle = "#fcd400";
                         ctx.fill();
                         ctx.closePath();
                     }
@@ -168,14 +168,14 @@
         function drawBall() {
             ctx.beginPath();
             ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-            ctx.fillStyle = "#7f7f7f";
+            ctx.fillStyle = "#f9a51a";
             ctx.fill();
             ctx.closePath();
         }
         function drawPaddle() {
             ctx.beginPath();
             ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-            ctx.fillStyle = "#7f7f7f";
+            ctx.fillStyle = "#f9a51a";
             ctx.fill();
             ctx.closePath();
         }
